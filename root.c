@@ -4,7 +4,6 @@
 double root(double f(double), double g(double), double a, double b, double eps1)
 {
     double ep = 1e-10;
-	printf("!");
     double c = (a + b) / 2;
     double Fa = f(a) - g(a);
     int za = 0, zc = 0;
@@ -16,7 +15,6 @@ double root(double f(double), double g(double), double a, double b, double eps1)
                 za = -1;
         }
     double Fc = f(c) - g(c);
-    printf(" %f %f",g(1.5),g(0.2671));
     if (Fc > ep)
         zc = 1;
     else
@@ -49,6 +47,7 @@ double root(double f(double), double g(double), double a, double b, double eps1)
                 zc  = 0;
         }
     }
+printf(")))))%f \n", g(1));
     return c; 
 }
 

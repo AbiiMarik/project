@@ -1,39 +1,16 @@
 section .rodata
-const1 dd 2
-const2 dd 6
+const1 dd 5
+const2 dd -14
 
 section .text
-global f3
-f3:
+global f4
+f4:
 push ebp
 mov ebp, esp
 fild dword[const1]
 fld qword[ebp+8]
-fsubp
-fld1
-fxch
-fdivp
+fmulp
 fild dword[const2]
-faddp
+fadd
 leave
 ret
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,10 +1,10 @@
 C=gcc
 ASM=nasm
-CFLAGS=-g -O2 -Wall -m64 
-ASMFLAGS=-g -f  win64
+CFLAGS=-g -O2 -m32
+ASMFLAGS=-g -f  elf32
 all: main
 
-main: main.o integral.o root.o f1.o f2.o f3.o
+main: main.o integral.o root.o f1.o f2.o f3.o f4.o f5.o f6.o
 	$(CC) $(CFLAGS) $^ -o $@
 
 main.o: main.c
@@ -24,6 +24,15 @@ f2.o: f2.asm
 
 f3.o: f3.asm
 	$(ASM) $(ASMFLAGS) $< -o $@
+f4.o: f4.asm
+	$(ASM) $(ASMFLAGS) $< -o $@
+
+f5.o: f5.asm
+	$(ASM) $(ASMFLAGS) $< -o $@
+
+f6.o: f6.asm
+	$(ASM) $(ASMFLAGS) $< -o $@
+
 
 clean:
 	rm -rf *.o 
