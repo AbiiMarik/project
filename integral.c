@@ -1,38 +1,43 @@
 #include <math.h>
-#include "functions.h"
+#include <stdio.h>
+
+double f(double x)
+{
+    return 2*x*x - 10*x+13;
+}
+
 double integral(double f(double), double a, double b, double eps2)
 {
     int n = 32;
-    double s = f(a) + f(b);
+    double Sab = f(a) + f(b);
     double h = (b - a)/n;
-    for(int i = 1; i < n; i++)
-    {
-        s += (2*(i%2) + 2) * f(a + i * h);
-    }
-    double s2 = s;
-    s = h * s / 3;
+    double Sever = 0, Sodd = 0;
+    for (int i = 2; i < n - 1; i+=2)
+        Sever += f(a + h * i);
+    for (int i = 1; i < n; i+=2)
+        Sodd += f(a + h * i);
+    double In = (4 * Sodd + 2 * Sever + Sab) * h / 3;
+    n *= 2;
     h /= 2;
-    for(int i = 1; i < 2 * n; i++)
-
-       s2 += (4*(i%2) - ((i + 1)%2)*(i % 4)) * f(a + i * h);
-
-
-    s2 = h * s2 / 3;
-
-    double d = fabs(s2 - s) / 15;
-
-
+    Sever = Sodd + Sever;
+    Sodd = 0;
+    for (int i = 1; i < n; i+=2)
+        Sodd += f(a + h * i);
+    double I2n = (4 * Sodd + 2 * Sever + Sab) * h / 3;
+    double d = fabs(I2n - In);
+    eps2 *= 15;
     while (d >= eps2)
     {
+        In = I2n;
         n *= 2;
-        s = s2;
-        s2 = 3 * s2 / h;
         h /= 2;
-        for(int i = 1; i < 2 * n; i++)
-            s2 += (4*(i%2) - ((i + 1)%2)*(i % 4)) * f(a + i * h);
-        s2 = h * s2 /3;
-        d = fabs(s2 - s) / 15;
+        Sever = Sodd + Sever;
+        Sodd = 0;
+        for (int i = 1; i < n; i+=2)
+            Sodd += f(a + h * i);
+        I2n = (4 * Sodd + 2 * Sever + Sab) * h / 3;
+        d = fabs(I2n - In);
     }
-    return s2;
+    return I2n;
 }
 
