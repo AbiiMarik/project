@@ -1,4 +1,4 @@
-C=gcc
+CC=gcc
 ASM=nasm
 CFLAGS=-g -O2 -m32
 ASMFLAGS=-g -f  elf32
@@ -33,7 +33,6 @@ f5.o: f5.asm
 f6.o: f6.asm
 	$(ASM) $(ASMFLAGS) $< -o $@
 
-
 clean:
-	rm -rf *.o 
+	rm -rf *.o
 
