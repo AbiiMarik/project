@@ -4,7 +4,7 @@ CFLAGS=-g -O2 -m32
 ASMFLAGS=-g -f  elf32
 all: main
 
-main: main.o integral.o root.o f1.o f2.o f3.o f4.o f5.o f6.o
+main: main.o integral.o root.o f.o
 	$(CC) $(CFLAGS) $^ -o $@
 
 main.o: main.c
@@ -16,23 +16,9 @@ integral.o: integral.c
 root.o: root.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-f1.o: f1.asm
-	$(ASM) $(ASMFLAGS) $< -o $@
-
-f2.o: f2.asm
-	$(ASM) $(ASMFLAGS) $< -o $@
-
-f3.o: f3.asm
-	$(ASM) $(ASMFLAGS) $< -o $@
-f4.o: f4.asm
-	$(ASM) $(ASMFLAGS) $< -o $@
-
-f5.o: f5.asm
-	$(ASM) $(ASMFLAGS) $< -o $@
-
-f6.o: f6.asm
+f.o: f.asm
 	$(ASM) $(ASMFLAGS) $< -o $@
 
 clean:
-	rm -rf *.o
+	rm -rf *.o main
 

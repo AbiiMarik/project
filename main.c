@@ -9,7 +9,7 @@ int main(int count, char **key)
 {
 	int i = 0;
 	double eps1 = 0.00001, eps2 = 0.00001;
-	int iters1 = 0, iters2 = 0, iters3 = 0; //количество итераций на решени уравнений f1=f2, f2=f3, f3=f1
+	int iters1 = 0, iters2 = 0, iters3 = 0; //количество итераций на решение уравнений f1=f2, f2=f3, f3=f1
 	while (++i < count) //цикл, в котором обрабатываются ключи
 	{
 	printf("\n");
